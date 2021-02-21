@@ -252,13 +252,12 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
 	margin-left: 45px; 
 	padding: 9px; 
 	text-align: center; 
-	background: #c8c8bd; 
-	border: 2px solid #553000; 
+	background: white; 
+	border: 1px solid #553000; 
 }
 
 .fp_box-catalogue:hover { 
-	background: #696960; 
-	border: 2px solid #fff; 
+	transform: scale(1.1); 
 
 }
 
@@ -282,7 +281,7 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
 	text-align: left; 
 }
 
-.fp_box-catalogue:hover.fp_box-catalogue h2 a { 
+/* .fp_box-catalogue:hover.fp_box-catalogue h2 a { 
 	color: #fff; 
 	font-size: 18px; 
 	font-weight: 700; 
@@ -290,7 +289,7 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
 
 .fp_box-catalogue:hover p { 
 	color: #d6d6ce;
-}
+} */
 
 .fp_box-catalogue-onlist { 
 	float: left; 
