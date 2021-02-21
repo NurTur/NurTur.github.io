@@ -55,13 +55,13 @@
 /*Top level menu link items style*/
 .ddsmoothmenu ul li a {
 	display: block;
-	width: 83px;
+	width: 95px;
 	height: 31px;
 	line-height: 28px;
 	padding: 0;
-	margin-right: 10px;
-	margin-bottom: 7px;
-	font-size: 14px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	font-size: 16px;
 	color: #fff;	
 	text-decoration: none;
 	font-weight: 400;
@@ -80,7 +80,7 @@
 /*1st sub level menu*/
 .ddsmoothmenu ul li ul {
 	position: absolute;
-	width: 242px;
+	width: 252px;
 	left: 0;
 	display: none; /*collapse all sub menus to begin with*/
 	visibility: hidden;
@@ -120,12 +120,12 @@
 .ddsmoothmenu ul li ul li a{
 	/* //font-weight: 400; */
 	font-family: "Segoe Ui SemiBold";
-	width: 200px; /*width of sub menus*/
+	width: 210px; /*width of sub menus*/
 	height: 33px;
 	padding: 3px 20px;
 	margin: 0 2px;
 /* line-height: 36px; */
-	font-size: 13px;	
+	font-size: 14px;	
 	text-align: left;
 	background: none;
 	color: #bbb3ac;
