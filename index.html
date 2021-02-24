@@ -97,6 +97,32 @@
     <![endif]-->
     <script type="text/javascript" src="js/jquery.simplemodal.js"></script>
     <script type="text/javascript" src="js/basic.js"></script>
+    <script type="text/javascript">
+    var contador; 
+var cadaImagen = 0; 
+
+function cambia() {
+clearTimeout(contador); 
+
+var totalMiniaturas = document.querySelectorAll("#selectores img"); 
+var totalImagenes = document.querySelectorAll("#visor div"); 
+
+for(animales=0; animales<totalImagenes.length; animales++) {
+totalMiniaturas[animales].style.borderColor = "transparent"; 
+totalImagenes[animales].style.visibility = "hidden"; 
+}
+
+totalMiniaturas[cadaImagen].style.borderColor = "#ffea54"; 
+totalImagenes[cadaImagen].style.visibility = "visible"; 
+
+cadaImagen = (cadaImagen == (totalImagenes.length - 1)) ? 0 : cadaImagen + 1; 
+
+contador = setTimeout(cambia , 2000); 
+}
+
+onload = cambia; 
+    
+    </script>
   </head>
   <body>
     <div id="header_wrapper">
@@ -289,8 +315,28 @@
     <div id="main_top"></div>
     <div id="main">
       <div style="display: flex; justify-content: center; align-items: center;">
-      <h2>Ваша цель – наша цель!</h2>
+        <marquee><h2>Ваша цель – наша цель!</h2></marquee>
+      
     </div>
+    <div id="muestra">
+      <div id="selectores">
+      
+       <img title="Ricardo Crespo." src="images/durmazlar-logo.png" style="width: 190px;">
+       <img title="Roberto Cortez." src="images/gur-sogutma-logo.png" style="width: 190px;">
+       <img title="Ricardo Cinalli." src="images/matrix-tools-logo.png" style="width: 190px;">
+       <img title="'Nereida'." src="images/dalgakiran-logo.png" style="width: 190px;">
+      
+      </div>
+      <div id="visor">
+
+     
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><img src="images/durmazlar-logo.png" style="width: 420px;"><br/><h3 style="color: #fff;">Металлообрабатывающие станки</h3></div>
+        <div  style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><img src="images/gur-sogutma-logo.png" style="width: 420px;"><br/><h3 style="color: #fff;">Системы охлаждения</h3></div>
+        <div  style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><img  src="images/matrix-tools-logo.png" style="width: 420px;"><br/><h3 style="color: #fff;">Инструменты для </h3><h3 style="color: #fff;">металлообрабатывающих станков</h3></div>
+        <div  style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><img src="images/dalgakiran-logo.png" style="width: 420px;" ><br/><h3 style="color: #fff;">Промышленные компрессоры</h3></div>
+      </div>
+     </div>
+
       <div class="fp_box6" >
         <a href="catalogue-dalgakiran.html" title="продукция Dalgakiran"
           ><img src="images/dalgakiran-logo.png" alt=""
