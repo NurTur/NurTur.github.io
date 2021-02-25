@@ -39,7 +39,13 @@ body {
   font-family: "Segoe Ui Regular";
   font-size: 15px;
   line-height: 1.4em;
-  background-color: #f3f3f3;
+  background-image: url(../images/backFon2.png);
+  background-attachment: fixed;
+  -moz-background-size: 100%; 
+  -webkit-background-size: 100%; 
+  -o-background-size: 100%; 
+  background-size: 100%; 
+  /* background-color: #f3f3f3; */
 }
 
 a,
@@ -367,7 +373,7 @@ h6 {
 }
 
 .fp_box9 {
-	width: 580px;
+  width: 580px;
 	height: 230px;
 	margin-bottom: 20px;
 }
