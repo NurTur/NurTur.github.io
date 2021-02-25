@@ -40,6 +40,7 @@ body {
   font-size: 15px;
   line-height: 1.4em;
   background-image: url(../images/backFon2.png);
+  background-repeat: no-repeat;
   background-attachment: fixed;
   -moz-background-size: 100%; 
   -webkit-background-size: 100%; 
