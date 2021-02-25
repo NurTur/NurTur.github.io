@@ -727,4 +727,23 @@ onload = cambia;
     </div>
     <!-- END of footer -->
   </body>
+  <script>
+    var body=document.getElementsByTagName('body')[0];
+    var scrollWidth = Math.max(
+  document.body.scrollWidth, document.documentElement.scrollWidth,
+  document.body.offsetWidth, document.documentElement.offsetWidth,
+  document.body.clientWidth, document.documentElement.clientWidth
+);
+
+    console.log("gggggggg44",window.innerWidth,'  ',scrollWidth)
+    if (scrollWidth<1000) {
+      
+      body.style="background-image: url(./images/backFon.png)";
+    } else {
+      body.style="background-image: url(./images/backFon2.png)";
+    }
+  
+    console.log("ggggg",body)
+  
+  </script>
 </html>
