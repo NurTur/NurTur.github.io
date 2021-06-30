@@ -1,2 +1,2 @@
-.result{display:flex;justify-content:center}@media only screen and (max-width:544px){.result{background-color:#fbfbfb}}@media only screen and (min-width:545px) and (max-width:769px){.result{background-color:#fbfbfb}}.result__box{width:500px;height:auto;margin-top:60px;box-shadow:0 4px 12px 0 #dedede;background-color:#fff;border-radius:8px;padding:45px 80px 35px;display:flex;flex-direction:column}@media only screen and (max-width:544px){.result__box{width:100%;height:auto;margin:15px 10px;padding:18px}}@media only screen and (min-width:545px) and (max-width:769px){.result__box{width:100%;height:auto;margin:15px 10px;padding:18px}}
+.tooltip-svg{border-radius:50%;background:#737373;margin-right:5px}.tooltip-svg svg{width:15px;height:10px}
 /*# sourceMappingURL=7.css.map */
