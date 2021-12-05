@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunknew_react_lending=self.webpackChunknew_react_lending||[]).push([[850],{7850:(e,n,t)=>{t.r(n),t.d(n,{default:()=>l});var a=t(7294);function l(){return a.createElement("div",null,"Asan1")}}}]);
+//# sourceMappingURL=850.27680b21.js.map
