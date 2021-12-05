@@ -1,1 +1,0 @@
-{"version":3,"file":"113.9567c950.js","mappings":"iKAEe,SAASA,IACpB,OACI,gCACI","sources":["webpack://new_react_lending/./src/views/main2.jsx"],"sourcesContent":["import React from 'react';\r\n\r\nexport default function Main2() {\r\n    return (\r\n        <>\r\n            <div>Arman2</div>\r\n        </>\r\n    );\r\n}\r\n"],"names":["Main2"],"sourceRoot":""}

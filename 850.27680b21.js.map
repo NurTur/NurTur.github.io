@@ -1,1 +1,0 @@
-{"version":3,"file":"850.27680b21.js","mappings":"iKAEe,SAASA,IACpB,OAAO","sources":["webpack://new_react_lending/./src/views/main1.jsx"],"sourcesContent":["import React from 'react';\r\n\r\nexport default function Main1() {\r\n    return <div>Asan1</div>;\r\n}\r\n"],"names":["Main1"],"sourceRoot":""}

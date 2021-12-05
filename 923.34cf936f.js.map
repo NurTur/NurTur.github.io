@@ -1,1 +1,0 @@
-{"version":3,"file":"923.34cf936f.js","mappings":"iKAEe,SAASA,IACpB,OAAO","sources":["webpack://new_react_lending/./src/views/main.jsx"],"sourcesContent":["import React from 'react';\r\n\r\nexport default function Main() {\r\n    return <div>nur0</div>;\r\n}\r\n"],"names":["Main"],"sourceRoot":""}
