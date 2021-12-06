@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunknew_react_lending=self.webpackChunknew_react_lending||[]).push([[113],{5113:(e,n,t)=>{t.r(n),t.d(n,{default:()=>r});var l=t(7294);function r(){return l.createElement(l.Fragment,null,l.createElement("div",null,"Arman2"))}}}]);
+//# sourceMappingURL=113.9567c950.js.map
