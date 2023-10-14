@@ -1,0 +1,32 @@
+import clsx from 'clsx';
+import type { LinkProps } from 'next/link';
+import Link from 'next/link';
+
+export type UnstyledLinkProps = {
+  href: string;
+  children: React.ReactNode;
+  openNewTab?: boolean;
+  className?: string;
+} & React.ComponentPropsWithoutRef<'div'> &
+  React.ComponentPropsWithoutRef<'a'> &
+  LinkProps;
+
+export default function UnstyledLink({ children, href, openNewTab, className, ...rest }: UnstyledLinkProps) {
+  const isNewTab = openNewTab !== undefined ? openNewTab : href && !href.startsWith('/') && !href.startsWith('#');
+
+  if (!isNewTab) {
+    return (
+      <Link href={href}>
+        <div role="link" {...rest} className={className} tabIndex={-5}>
+          {children}
+        </div>
+      </Link>
+    );
+  }
+
+  return (
+    <a target="_blank" rel="noopener noreferrer" href={href} {...rest} className={clsx(className, 'cursor-newtab')}>
+      {children}
+    </a>
+  );
+}
