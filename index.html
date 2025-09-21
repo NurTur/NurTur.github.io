@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курсы обмена валют</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2c3e50, #4a69bd);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .city-selector {
+            margin: 15px 0;
+        }
+        
+        select {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .currency-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            background-color: #e0e0e0;
+            border-radius: 5px 5px 0 0;
+            margin: 0 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background-color: #4a69bd;
+            color: white;
+        }
+        
+        .currency-content {
+            display: none;
+        }
+        
+        .currency-content.active {
+            display: block;
+        }
+        
+        .currency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .exchange-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .exchange-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .exchange-rate {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .buy-rate {
+            color: #27ae60;
+        }
+        
+        .sell-rate {
+            color: #e74c3c;
+        }
+        
+        .address {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .phones {
+            margin-bottom: 15px;
+        }
+        
+        .phone {
+            display: inline-block;
+            background-color: #f1f8ff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            color: #0366d6;
+        }
+        
+        .update-time {
+            font-size: 0.85rem;
+            color: #777;
+            text-align: right;
+            margin-top: 10px;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 20px;
+            font-weight: bold;
+            color: #4a69bd;
+        }
+        
+        .last-update {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            padding: 20px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .currency-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .currency-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Курсы обмена валют</h1>
+            <p>Актуальные курсы обмена CNY, TRY и RUB в Казахстане</p>
+            <div class="city-selector">
+                <select id="citySelector">
+                    <option value="almaty">Алматы</option>
+                    <option value="astana">Астана</option>
+                    <option value="shymkent">Шымкент</option>
+                    <option value="karaganda">Караганда</option>
+                    <option value="aktobe">Актобе</option>
+                </select>
+            </div>
+        </header>
+        
+        <div class="currency-tabs">
+            <div class="tab active" data-currency="cny">Китайский юань (CNY)</div>
+            <div class="tab" data-currency="try">Турецкая лира (TRY)</div>
+            <div class="tab" data-currency="rub">Российский рубль (RUB)</div>
+        </div>
+        
+        <div id="cnyContent" class="currency-content active">
+            <div class="currency-grid" id="cnyGrid">
+                <div class="status">Загрузка данных...</div>
+            </div>
+        </div>
+        
+        <div id="tryContent" class="currency-content">
+            <div class="currency-grid" id="tryGrid">
+                <div class="status">Загрузка данных...</div>
+            </div>
+        </div>
+        
+        <div id="rubContent" class="currency-content">
+            <div class="currency-grid" id="rubGrid">
+                <div class="status">Загрузка данных...</div>
+            </div>
+        </div>
+        
+        <div class="last-update" id="lastUpdate">
+            Последнее обновление: -
+        </div>
+    </div>
+
+    <script>
+        // Базовый URL API
+        const API_BASE_URL = 'https://exchangerback.onrender.com';
+        // https://exchangerback.onrender.com
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const citySelector = document.getElementById('citySelector');
+            const tabs = document.querySelectorAll('.tab');
+            const currencyContents = document.querySelectorAll('.currency-content');
+            const lastUpdateElement = document.getElementById('lastUpdate');
+            
+            let eventSources = {
+                cny: null,
+                try: null,
+                rub: null
+            };
+            
+            let currentCity = citySelector.value;
+            
+            // Функция для форматирования времени
+            function formatTime(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleTimeString('kk-KZ');
+            }
+            
+            // Функция для обновления времени последнего обновления
+            function updateLastUpdateTime() {
+                const now = new Date();
+                lastUpdateElement.textContent = `Последнее обновление: ${now.toLocaleTimeString('kk-KZ')}`;
+            }
+            
+            // Функция для создания карточки обменника
+            function createExchangeCard(point, currency) {
+                const card = document.createElement('div');
+                card.className = 'exchange-card';
+                
+                const rate = point.courses[currency.toUpperCase()];
+                const buyRate = rate ? rate[0] : 'Н/Д';
+                const sellRate = rate ? rate[1] : 'Н/Д';
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="exchange-rate">
+                            <span class="buy-rate">${buyRate}</span> / 
+                            <span class="sell-rate">${sellRate}</span>
+                        </div>
+                    </div>
+                    <div class="address">${point.address}</div>
+                    <div class="phones">
+                        ${point.phones.map(phone => `<span class="phone">${phone}</span>`).join('')}
+                    </div>
+                    <div class="update-time">
+                        Обновлено: ${point.actualTime}
+                    </div>
+                `;
+                
+                return card;
+            }
+            
+            // Функция для инициализации SSE соединения
+            function initSSEConnection(currency) {
+                // Закрываем предыдущее соединение, если оно существует
+                if (eventSources[currency]) {
+                    eventSources[currency].close();
+                }
+                
+                const gridElement = document.getElementById(`${currency}Grid`);
+                gridElement.innerHTML = '<div class="status">Загрузка данных...</div>';
+                
+                // Создаем новое SSE соединение
+                eventSources[currency] = new EventSource(`${API_BASE_URL}/api/sse/punkts/${currentCity}/${currency}`);
+                
+                eventSources[currency].onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        
+                        if (data.error) {
+                            gridElement.innerHTML = `<div class="error">Ошибка: ${data.error}</div>`;
+                            return;
+                        }
+                        
+                        if (data.length === 0) {
+                            gridElement.innerHTML = '<div class="status">Нет данных для отображения</div>';
+                            return;
+                        }
+                        
+                        // Очищаем grid
+                        gridElement.innerHTML = '';
+                        
+                        // Добавляем карточки обменников
+                        data.forEach(point => {
+                            const card = createExchangeCard(point, currency);
+                            gridElement.appendChild(card);
+                        });
+                        
+                        // Обновляем время последнего обновления
+                        updateLastUpdateTime();
+                    } catch (error) {
+                        console.error('Ошибка обработки данных:', error);
+                        gridElement.innerHTML = '<div class="error">Ошибка обработки данных</div>';
+                    }
+                };
+                
+                eventSources[currency].onerror = function(error) {
+                    console.error('SSE ошибка:', error);
+                    gridElement.innerHTML = '<div class="error">Ошибка соединения</div>';
+                    
+                    // Попытка переподключения через 5 секунд
+                    setTimeout(() => {
+                        initSSEConnection(currency);
+                    }, 5000);
+                };
+            }
+            
+            // Инициализация всех валют при загрузке
+            function initAllCurrencies() {
+                ['cny', 'try', 'rub'].forEach(currency => {
+                    initSSEConnection(currency);
+                });
+            }
+            
+            // Обработчик изменения города
+            citySelector.addEventListener('change', function() {
+                currentCity = this.value;
+                initAllCurrencies();
+            });
+            
+            // Обработчики для табов
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const currency = this.getAttribute('data-currency');
+                    
+                    // Активируем выбранный таб
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Показываем соответствующий контент
+                    currencyContents.forEach(content => content.classList.remove('active'));
+                    document.getElementById(`${currency}Content`).classList.add('active');
+                });
+            });
+            
+            // Инициализация при загрузке страницы
+            initAllCurrencies();
+            
+            // Обновляем время каждую минуту для красоты
+            setInterval(updateLastUpdateTime, 60000);
+        });
+    </script>
+</body>
+</html>
