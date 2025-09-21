@@ -194,8 +194,7 @@
                     <option value="almaty">Алматы</option>
                     <option value="astana">Астана</option>
                     <option value="shymkent">Шымкент</option>
-                    <option value="karaganda">Караганда</option>
-                    <option value="aktobe">Актобе</option>
+                    <option value="pavlodar">Павлодар</option>
                 </select>
             </div>
         </header>
@@ -278,7 +277,7 @@
                     </div>
                     <div class="address">${point.address}</div>
                     <div class="phones">
-                        ${point.phones.map(phone => `<span class="phone">${phone}</span>`).join('')}
+                         ${point.phones.map(phone => `<a href="tel:${phone}" class="phone">${phone}</a>`).join('')}
                     </div>
                     <div class="update-time">
                         Обновлено: ${point.actualTime}
