@@ -39,12 +39,12 @@ export const App: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/exchange/punkts/${selectedCity}?currency=${activeCurrency.toLocaleUpperCase()}`
+        `https://exchangerback.onrender.com/api/exchange/punkts/${selectedCity}?currency=${activeCurrency.toLocaleUpperCase()}`
       );
       const result = await response.json();
 
       const pointsResult = result.map((item: ExchangePoint) => ({ id: `${selectedCity}-${item.name}`, ...item }));
-      const circleResponse = await fetch("http://localhost:5000/api/circle/min-circle", {
+      const circleResponse = await fetch("https://exchangerback.onrender.com/api/circle/min-circle", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
