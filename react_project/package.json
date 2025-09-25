@@ -11,12 +11,15 @@
     },
     "dependencies": {
         "@tanstack/react-query": "^5.0.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "leaflet": "^1.9.4",
+        "react": "^19.1.1",
+        "react-dom": "^19.1.1",
+        "react-leaflet": "^5.0.0"
     },
     "devDependencies": {
-        "@rsbuild/core": "^1.0.0",
+        "@rsbuild/core": "^1.5.12",
         "@rsbuild/plugin-react": "^1.4.1",
+        "@types/leaflet": "^1.9.20",
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.0",
         "@typescript-eslint/eslint-plugin": "^6.0.0",
