@@ -25,15 +25,13 @@ export const ExchangeCard: React.FC<ExchangeCardProps> = ({
           <span className="text-green-600">{buyRate}</span> /{' '}
           <span className="text-red-600">{sellRate}</span>
         </div>
-        
+
         {/* Время на одном уровне с курсами */}
-        <div className="text-xs text-gray-400 mt-1.5">
-          {point.actualTime}
-        </div>
+        <div className="text-xs text-gray-400 mt-1.5">{point.actualTime}</div>
       </div>
-      
+
       <div className="font-medium mb-3 text-gray-700">{point.address || ''}</div>
-      
+
       <div className="mb-4">
         {point.phones.map(phone => (
           <a
@@ -41,9 +39,7 @@ export const ExchangeCard: React.FC<ExchangeCardProps> = ({
             href={`tel:${phone}`}
             onClick={() => onPhoneClick(phone)}
             className={`inline-block bg-blue-50 px-3 py-1 rounded-full mr-2 mb-2 transition-colors ${
-              clickedPhones.has(phone)
-                ? 'text-green-600'
-                : 'text-blue-600 hover:text-blue-800'
+              clickedPhones.has(phone) ? 'text-green-600' : 'text-blue-600 hover:text-blue-800'
             }`}
           >
             {phone}

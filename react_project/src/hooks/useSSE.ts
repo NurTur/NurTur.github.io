@@ -10,7 +10,7 @@ export const useSSE = (city: CityType, currency: CurrencyType) => {
 
   useEffect(() => {
     const url = `${API_BASE_URL}/api/exchange/sse/punkts/${city}/${currency}`;
-    
+
     if (eventSourceRef.current) {
       eventSourceRef.current.close();
     }
@@ -21,10 +21,10 @@ export const useSSE = (city: CityType, currency: CurrencyType) => {
 
     eventSourceRef.current = new EventSource(url);
 
-    eventSourceRef.current.onmessage = (event) => {
+    eventSourceRef.current.onmessage = event => {
       try {
         const eventData = JSON.parse(event.data);
-        
+
         // Проверяем, если пришла ошибка
         if (eventData && eventData.error) {
           setError(eventData.error);
@@ -49,11 +49,11 @@ export const useSSE = (city: CityType, currency: CurrencyType) => {
       }
     };
 
-    eventSourceRef.current.onerror = (err) => {
+    eventSourceRef.current.onerror = err => {
       console.error('SSE ошибка:', err);
       setError('Ошибка соединения');
       setIsConnected(false);
-      
+
       // Попытка переподключения через 5 секунд
       setTimeout(() => {
         if (eventSourceRef.current?.readyState === EventSource.CLOSED) {

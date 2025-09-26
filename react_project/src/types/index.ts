@@ -25,10 +25,10 @@ export interface PhoneClickState {
 }
 
 export interface MapViewState {
-  subsetIdx: [number | null],
+  subsetIdx: [number | null];
   isOpen: boolean;
   points: ExchangePoint[];
   city: CityType;
   currency: CurrencyType;
-  center: { lat: number; lng: number }
+  center: { lat: number; lng: number };
 }

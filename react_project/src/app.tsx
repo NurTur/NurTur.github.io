@@ -3,7 +3,7 @@ import { Header } from './components/Header';
 import { CurrencyTabs } from './components/CurrencyTabs';
 import { ExchangeCard } from './components/ExchangeCard';
 import { LastUpdate } from './components/LastUpdate';
-import MapView from "./components/MapView";
+import MapView from './components/MapView';
 import { useSSE } from './hooks/useSSE';
 import { CurrencyType, CityType, PhoneClickState, MapViewState, ExchangePoint } from './types';
 import { getCurrentTimeString } from './utils';
@@ -19,20 +19,23 @@ export const App: React.FC = () => {
     isOpen: false,
     points: [],
     city: 'almaty',
-    currency: 'cny'
+    currency: 'cny',
   });
   const [mapLoading, setMapLoading] = useState(false);
 
   const { data: points, error, isConnected } = useSSE(selectedCity, activeCurrency);
 
-  const handlePhoneClick = useCallback((phone: string) => {
-    const key = `${selectedCity}_${activeCurrency}`;
-    setClickedPhones(prev => {
-      const newSet = new Set(prev[key] || []);
-      newSet.add(phone);
-      return { ...prev, [key]: newSet };
-    });
-  }, [selectedCity, activeCurrency]);
+  const handlePhoneClick = useCallback(
+    (phone: string) => {
+      const key = `${selectedCity}_${activeCurrency}`;
+      setClickedPhones(prev => {
+        const newSet = new Set(prev[key] || []);
+        newSet.add(phone);
+        return { ...prev, [key]: newSet };
+      });
+    },
+    [selectedCity, activeCurrency]
+  );
 
   const handleShowMap = useCallback(async () => {
     setMapLoading(true); // start spinner
@@ -43,20 +46,22 @@ export const App: React.FC = () => {
       );
       const result = await response.json();
 
-      const pointsResult = result.map((item: ExchangePoint) => ({ id: `${selectedCity}-${item.name}`, ...item }));
-      const circleResponse = await fetch("https://exchangerback.onrender.com/api/circle/min-circle", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ points: pointsResult }),
-      });
+      const pointsResult = result.map((item: ExchangePoint) => ({
+        id: `${selectedCity}-${item.name}`,
+        ...item,
+      }));
+      const circleResponse = await fetch(
+        'https://exchangerback.onrender.com/api/circle/min-circle',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ points: pointsResult }),
+        }
+      );
 
       const circleData = await circleResponse.json();
-
-      console.log("+++=====+", circleData)
-
-
 
       setMapView({
         subsetIdx: circleData.subsetIdx,
@@ -64,7 +69,7 @@ export const App: React.FC = () => {
         isOpen: true,
         points: result,
         city: selectedCity,
-        currency: activeCurrency
+        currency: activeCurrency,
       });
     } catch (err) {
       console.error('Failed to fetch map points:', err);
@@ -96,26 +101,16 @@ export const App: React.FC = () => {
 
   const renderContent = () => {
     if (error) {
-      return (
-        <div className="text-center py-5 font-bold text-red-600">
-          Ошибка: {error}
-        </div>
-      );
+      return <div className="text-center py-5 font-bold text-red-600">Ошибка: {error}</div>;
     }
 
     if (!isConnected) {
-      return (
-        <div className="text-center py-5 font-bold text-blue-600">
-          Загрузка данных...
-        </div>
-      );
+      return <div className="text-center py-5 font-bold text-blue-600">Загрузка данных...</div>;
     }
 
     if (points.length === 0) {
       return (
-        <div className="text-center py-5 font-bold text-blue-600">
-          Нет данных для отображения
-        </div>
+        <div className="text-center py-5 font-bold text-blue-600">Нет данных для отображения</div>
       );
     }
 
@@ -144,16 +139,9 @@ export const App: React.FC = () => {
           mapLoading={mapLoading}
         />
 
+        <CurrencyTabs activeCurrency={activeCurrency} onCurrencyChange={setActiveCurrency} />
 
-
-        <CurrencyTabs
-          activeCurrency={activeCurrency}
-          onCurrencyChange={setActiveCurrency}
-        />
-
-        <div className="mb-8">
-          {renderContent()}
-        </div>
+        <div className="mb-8">{renderContent()}</div>
 
         <LastUpdate lastUpdate={lastUpdate} />
 

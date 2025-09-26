@@ -4,8 +4,8 @@ import { CityType } from '../types';
 interface HeaderProps {
   selectedCity: CityType;
   onCityChange: (city: CityType) => void;
-  onShowMap: () => void,
-  mapLoading: boolean
+  onShowMap: () => void;
+  mapLoading: boolean;
 }
 
 const CITIES: { value: CityType; label: string }[] = [
@@ -15,7 +15,12 @@ const CITIES: { value: CityType; label: string }[] = [
   { value: 'pavlodar', label: 'Павлодар' },
 ];
 
-export const Header: React.FC<HeaderProps> = ({ selectedCity, onCityChange, onShowMap, mapLoading }) => {
+export const Header: React.FC<HeaderProps> = ({
+  selectedCity,
+  onCityChange,
+  onShowMap,
+  mapLoading,
+}) => {
   return (
     <header className="text-center mb-8 py-5 bg-gradient-to-r from-gray-800 to-blue-700 text-white rounded-lg shadow-card">
       <h1 className="text-4xl font-bold mb-2">Курсы обмена Нурболата</h1>
@@ -53,19 +58,10 @@ export const Header: React.FC<HeaderProps> = ({ selectedCity, onCityChange, onSh
                 stroke="currentColor"
                 strokeWidth="4"
               ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v8H4z"
-              ></path>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
             </svg>
           ) : (
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -74,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({ selectedCity, onCityChange, onSh
               />
             </svg>
           )}
-          <span>{mapLoading ? "Загрузка..." : "Карта"}</span>
+          <span>{mapLoading ? 'Загрузка...' : 'Карта'}</span>
         </button>
       </div>
     </header>
